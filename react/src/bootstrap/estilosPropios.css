@@ -1,0 +1,12 @@
+.tablaProductos {
+    overflow: hidden;
+
+}
+
+@media (width <=767px) {
+
+    .tablaProductos {
+        overflow-x: scroll;
+
+    }
+}
