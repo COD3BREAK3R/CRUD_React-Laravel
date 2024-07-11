@@ -1,7 +1,7 @@
 import mostrarModal from "../utils/Modal";
 
 export const EliminarProducto = async (id) => {
-  
+
     const datosFecth = {
 
         method: 'DELETE',
@@ -25,17 +25,19 @@ export const EliminarProducto = async (id) => {
 
 export const eliminar = (id, btnClickeado, productos, setProductos, setEliminando) => {
 
+    setEliminando(true);
+
     btnClickeado.target.innerText = "Eliminando...";
     btnClickeado.target.previousSibling.remove();
     btnClickeado.target.classList.add('w-100');
 
     EliminarProducto(id)
         .then(() => {
-            mostrarModal('Éxito', 'Producto Eliminado Satisfactoriamente', 'success');
             setProductos(productos.filter(producto => producto.id !== id));
         })
         .catch((error) => {
-            mostrarModal('Error', 'Ocurrió un Error al intentar Eliminar el Producto')
+            mostrarModal('Error', 'Ocurrió un Error al intentar Eliminar el Producto', 'danger')
             console.log(error);
-        }).finally(()=>setEliminando(false))
+        }).finally(() => { setEliminando(false) })
+
 };

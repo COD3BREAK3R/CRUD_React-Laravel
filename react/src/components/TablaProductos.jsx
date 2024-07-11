@@ -1,60 +1,13 @@
-import { useEffect, useState } from "react";
-import obtenerProductos from './api/ObtenerProductos';
+
 import Productos from './Productos';
-import { useNavigate } from 'react-router-dom';
-import mostrarModal from "./utils/Modal";
-import { rellenarTabla } from "./api/RellenarTabla";
+import useMostrarTablaProductos from './hooks/useMostrarTablaProductos';
 
 const TablaProductos = () => {
-    const [errorRespuesta, setErrorRespuesta] = useState(false);
-    const [cargando, setCargando] = useState(true);
-
-    const [productos, setProductos] = useState([]);
-    const [existenciaProductos, setExistenciaProductos] = useState(0);
-    const [modalAbierto, setModalAbierto] = useState(false);
-    const navigate = useNavigate();
 
     // ------------------------------
+    const { productos, setProductos, cargando, handleEditar, handleCrearProducto, handleRellenarTabla } = useMostrarTablaProductos();
 
-    const cargarProductos = () => {
-        obtenerProductos()
-            .then(setProductos)
-            .then(() => {
-                if (productos.length === 0) {
-                    setExistenciaProductos(false)
-                    setCargando(false)
-                } else {
-                    setExistenciaProductos(true)
-                }
-                setErrorRespuesta(false)
-            })
-            .catch(() => { setErrorRespuesta(true) });
-    }
-    useEffect(() => {
-
-        cargarProductos();
-    }, [setErrorRespuesta]);
-
-
-    // ------------------------------
-
-    const handleEditar = (id) => {
-        navigate(`/editar/${id}`);
-    };
-
-    const handleCrearProducto = () => {
-        navigate(`/crear/`);
-    };
-
-    const handleRellenarTabla = (e) => {
-        e.target.innerText = "Rellenando Tabla..."
-        e.target.disabled = true;
-        rellenarTabla(cargarProductos,e)
-    };
-
-    // ------------------------------
-
-    if (cargando || errorRespuesta === false && productos.length === 0 && existenciaProductos) {
+    if (cargando) {
         return (
 
             <div className='container'>
@@ -63,11 +16,6 @@ const TablaProductos = () => {
                 </div>
             </div>
         );
-    }
-
-    if (errorRespuesta && !modalAbierto) {
-        mostrarModal('Error', 'Error al cargar los productos', 'danger');
-        setModalAbierto(true);
     }
 
     // ------------------------------

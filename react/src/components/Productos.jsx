@@ -31,8 +31,8 @@ const Productos = ({ productos, onEditar, setProductos }) => {
                                 </button>
 
                                 <button className="btn btn-danger w-50" onClick={(e) => {
-                                    setEliminando(true);
                                     eliminar(producto.id, e, productos, setProductos, setEliminando);
+                                    
                                 }}
                                 disabled={eliminando}
                                 >

@@ -1,26 +1,32 @@
-// EditarProducto.js
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { FormProducto } from './utils/FormProducto';
-import { FormBotones } from './utils/FormBotones';
+import { FormProducto } from './FormProducto';
+import { FormBotones } from './FormBotones';
 import ProductoEstado from './utils/EstadoCargaProducto';
 
-import useProducto from './hooks/useProducto';
-import useValidacionFormulario from './hooks/useValidacionFormulario';
-import useGuardarCambios from './hooks/useGuardarCambios';
+import useProducto from './hooks/useObtenerProducto';
+import useGuardarCambiosProductoForm from './hooks/useGuardarCambiosProductoForm';
+
 // ---------------------------
 const EditarProducto = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-
-    const { nombreOriginal, producto, setProducto, modalAbierto } = useProducto(id);
-    const { errores, validacionFormulario } = useValidacionFormulario(producto);
-    const { handleGuardarCambios } = useGuardarCambios(producto);
+    // ---------------------------
     
+    const { nombreOriginal, producto, setProducto, modalAbierto } = useProducto(id);
+
+    const {
+        errores,
+        btnActivo,
+        handleGuardarProducto,
+        validacionFormulario } = useGuardarCambiosProductoForm({ producto, setProducto });
+
+    // ---------------------------
     if (!producto) {
         return <ProductoEstado producto={producto} modalAbierto={modalAbierto} navigate={navigate} />
     }
+    // ---------------------------
 
     return (
         <div className="container mt-5">
@@ -34,8 +40,9 @@ const EditarProducto = () => {
                 <FormBotones
                     mostrarTodos={false}
                     textoBotonPrimario="Guardar Cambios"
-                    onClickBotonPrimario={handleGuardarCambios}
+                    onClickBotonPrimario={handleGuardarProducto}
                     onClickVolverAtras={() => navigate(-1)}
+                    btnActivo={btnActivo}
                 />
             </form>
         </div>

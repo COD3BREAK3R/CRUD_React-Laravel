@@ -1,15 +1,10 @@
 import { useState, useEffect } from 'react';
 import { validarFormulario } from '../utils/ValidarFormulario';
-import crearProducto from "../api/InsertarProducto";
+import guardarCambios from '../api/ActualizarDatosProducto';
 import mostrarModal from '../utils/Modal';
 
-const useProductoForm = () => {
-  const [producto, setProducto] = useState({
-    nombre: '',
-    precio: '',
-    cantidad_en_stock: ''
-  });
-  
+const useGuardarCambiosProductoForm = ({ producto, setProducto }) => {
+
   const [errores, setErrores] = useState({});
   const [btnActivo, setBtnActivo] = useState(true);
   const [validar, setValidar] = useState(false);
@@ -21,18 +16,18 @@ const useProductoForm = () => {
 
   useEffect(() => {
     if (validar && Object.keys(errores).length === 0 && btnActivo) {
-      botonClickeado.innerText = 'Creando Producto...';
+      botonClickeado.innerText = 'Guardando Cambios...';
       setBtnActivo(false);
 
-      crearProducto(producto)
+      guardarCambios(producto)
         .then(() => {
-          mostrarModal('Éxito', 'Producto Creado con Éxito', 'success');
+          mostrarModal('Éxito', 'Producto Editado con Éxito', 'success');
         })
         .catch(error => {
           mostrarModal('Error', error, 'danger');
         })
         .finally(() => {
-          botonClickeado.innerText = 'Crear Producto';
+          botonClickeado.innerText = 'Guardar Cambios';
           setValidar(false);
           setBtnActivo(true);
         });
@@ -42,7 +37,7 @@ const useProductoForm = () => {
     }
   }, [errores, validar, btnActivo, producto]);
 
-  const handleCrearProducto = (btnClickeado) => {
+  const handleGuardarProducto = (btnClickeado) => {
     validacionFormulario('todo');
     setValidar(true);
     setBotonClickeado(btnClickeado.target);
@@ -53,9 +48,9 @@ const useProductoForm = () => {
     setProducto,
     errores,
     btnActivo,
-    handleCrearProducto,
+    handleGuardarProducto,
     validacionFormulario
   };
 };
 
-export default useProductoForm;
+export default useGuardarCambiosProductoForm;

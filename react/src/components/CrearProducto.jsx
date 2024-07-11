@@ -1,22 +1,25 @@
 import { useNavigate } from 'react-router-dom';
 import useProductoForm from './hooks/useCrearProductoForm';
-import { FormProducto } from './utils/FormProducto';
-import { FormBotones } from './utils/FormBotones';
+import { FormProducto } from './FormProducto';
+import { FormBotones } from './FormBotones';
 
 const CrearProducto = () => {
-  const { producto, setProducto, errores, btnActivo, handleCrearProducto, validacionFormulario } = useProductoForm();
   const navigate = useNavigate();
+  
+  const { producto, setProducto, errores, btnActivo, handleCrearProducto, validacionFormulario } = useProductoForm();
 
   return (
     <div className="container mt-5">
       <h2 className='d-flex justify-content-center'>Crear Producto</h2>
+
       <form>
         <FormProducto productoProps={{
           producto,
           setProducto,
           errores,
-          validacionFormulario// Este método ya no es necesario aquí
+          validacionFormulario
         }}></FormProducto>
+
         <FormBotones
           mostrarTodos={true}
           textoBotonPrimario="Crear Producto"
@@ -25,6 +28,7 @@ const CrearProducto = () => {
           btnActivo={btnActivo}
         ></FormBotones>
       </form>
+
     </div>
   );
 };
