@@ -1,6 +1,10 @@
+import { urlAPI } from "./urlAPI";
+
 const obtenerProducto = async (id) => {
+    let api = urlAPI();
+
     try {
-        const respuesta = await fetch(`http://localhost:8000/api/productos/${id}`);
+        const respuesta = await fetch(`${api}/productos/${id}`);
 
         if (!respuesta.ok) {
             const mensajeError = await respuesta.json();

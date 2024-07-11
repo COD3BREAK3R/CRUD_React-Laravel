@@ -1,6 +1,9 @@
 import mostrarModal from "../utils/Modal";
+import { urlAPI } from "./urlAPI";
 
 export const rellenarTabla = async (cargarProductos, e) => {
+    let api = urlAPI();
+
     const datosFecth = {
 
         method: 'GET',
@@ -10,7 +13,7 @@ export const rellenarTabla = async (cargarProductos, e) => {
     };
 
     try {
-        const response = await fetch(`http://localhost:8000/api/run-seed`, datosFecth);
+        const response = await fetch(`${api}/run-seed`, datosFecth);
 
         const mensajeRespuesta = await response.json();
         if (!response.ok) {

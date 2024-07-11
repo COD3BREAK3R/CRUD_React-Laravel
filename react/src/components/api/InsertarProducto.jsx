@@ -1,4 +1,7 @@
+import { urlAPI } from "./urlAPI";
+
 const InsertarProducto = async (producto) => {
+    let api = urlAPI();
     const datosFecth = {
 
         method: 'POST',
@@ -9,7 +12,7 @@ const InsertarProducto = async (producto) => {
     };
 
     try {
-        const response = await fetch(`http://localhost:8000/api/productos`, datosFecth);
+        const response = await fetch(`${api}/productos`, datosFecth);
 
         if (!response.ok) {
             const mensajeError = await response.json();

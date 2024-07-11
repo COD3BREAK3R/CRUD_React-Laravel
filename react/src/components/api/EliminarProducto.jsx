@@ -1,6 +1,8 @@
 import mostrarModal from "../utils/Modal";
+import { urlAPI } from "./urlAPI";
 
 export const EliminarProducto = async (id) => {
+    let api = urlAPI();
 
     const datosFecth = {
 
@@ -11,7 +13,7 @@ export const EliminarProducto = async (id) => {
     };
 
     try {
-        const response = await fetch(`http://localhost:8000/api/productos/${id}`, datosFecth);
+        const response = await fetch(`${api}/productos/${id}`, datosFecth);
 
         if (!response.ok) {
             throw new Error('No se pudo eliminar el producto');
