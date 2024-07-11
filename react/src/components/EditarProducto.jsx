@@ -31,7 +31,7 @@ const EditarProducto = () => {
     return (
         <div className="container mt-5">
 
-            <h2 className='d-flex justify-content-center'>
+            <h2 className='d-flex justify-content-center text-center mb-3'>
                 Editar Producto {nombreOriginal}
             </h2>
 
