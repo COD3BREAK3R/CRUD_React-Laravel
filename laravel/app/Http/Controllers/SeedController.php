@@ -11,6 +11,7 @@ class SeedController extends Controller
     {
         try {
             Artisan::call('db:seed', [
+                '--force' => true,
                 '--class' => 'ProductosSeeder'
             ]);
 

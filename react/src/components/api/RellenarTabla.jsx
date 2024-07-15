@@ -4,16 +4,8 @@ import { urlAPI } from "./urlAPI";
 export const rellenarTabla = async (cargarProductos, e) => {
     let api = urlAPI();
 
-    const datosFecth = {
-
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
-
     try {
-        const response = await fetch(`${api}/run-seed`, datosFecth);
+        const response = await fetch(`${api}/run-seed`);
 
         const mensajeRespuesta = await response.json();
         if (!response.ok) {
@@ -23,7 +15,6 @@ export const rellenarTabla = async (cargarProductos, e) => {
             cargarProductos();
         }
 
-        return await response.json();
     } catch (error) {
         throw new Error(error.message);
     } finally {

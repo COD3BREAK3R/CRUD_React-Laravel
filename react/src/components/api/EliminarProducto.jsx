@@ -5,11 +5,7 @@ export const EliminarProducto = async (id) => {
     let api = urlAPI();
 
     const datosFecth = {
-
         method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
     };
 
     try {
