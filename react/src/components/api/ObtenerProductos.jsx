@@ -15,7 +15,7 @@ const obtenerProductos = async () => {
         return datosRespuesta;
 
     } catch (error) {
-        throw error;
+        throw new error;
     }
 };
 

@@ -1,3 +1,7 @@
 export const urlAPI = () => {
-  return 'http://localhost:8000/api';
+  const isLocalhost = window.location.hostname === 'localhost';
+
+  return isLocalhost
+    ? 'http://localhost:8000/api'
+    : 'https://clasificados.luisenrique.website/laravel/public/api'
 }

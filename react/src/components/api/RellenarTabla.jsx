@@ -16,6 +16,7 @@ export const rellenarTabla = async (cargarProductos, e) => {
         const response = await fetch(`${api}/run-seed`, datosFecth);
 
         const mensajeRespuesta = await response.json();
+
         if (!response.ok) {
             throw new Error(mensajeRespuesta.error || 'Error al intentar rellenar la tabla');
         } else {
@@ -23,7 +24,6 @@ export const rellenarTabla = async (cargarProductos, e) => {
             cargarProductos();
         }
 
-        return await response.json();
     } catch (error) {
         throw new Error(error.message);
     } finally {
