@@ -3,7 +3,7 @@ export const validarFormulario = (erroresRecibios, producto, tipo) => {
     let errores = { ...erroresRecibios };
     let precioProducto = Number(producto.precio);
     let cantidadStock = Number(producto.cantidad_en_stock);
-    let patronNombre = /^[a-zA-Z0-9\s]{5,100}$/;
+    let patronNombre = /^[a-zA-Z0-9\sñÑáéíóúÁÉÍÓÚ_-]{5,100}$/;
 
     // --------------------
     if (tipo === 'nombre' || tipo === 'todo' || producto.nombre.length > 0) {

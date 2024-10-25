@@ -3,7 +3,7 @@ import { urlAPI } from "./urlAPI";
 const guardarCambios = async (producto) => {
 
     let api = urlAPI();
-    
+
     const datosFecth = {
 
         method: 'PUT',
@@ -14,7 +14,6 @@ const guardarCambios = async (producto) => {
     };
 
     try {
-        console.log(api);
         const response = await fetch(`${api}/productos/${producto.id}`, datosFecth);
 
         if (!response.ok) {

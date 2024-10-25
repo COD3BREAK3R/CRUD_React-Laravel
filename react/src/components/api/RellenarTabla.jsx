@@ -4,16 +4,8 @@ import { urlAPI } from "./urlAPI";
 export const rellenarTabla = async (cargarProductos, e) => {
     let api = urlAPI();
 
-    const datosFecth = {
-
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
-
     try {
-        const response = await fetch(`${api}/run-seed`, datosFecth);
+        const response = await fetch(`${api}/run-seed`);
 
         const mensajeRespuesta = await response.json();
 
