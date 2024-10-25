@@ -3,5 +3,5 @@ export const urlAPI = () => {
 
   return isLocalhost
     ? 'http://localhost:8000/api'
-    : 'https://clasificados.luisenrique.website/laravel/public/api'
+    : 'https://mininventario.luisenrique.website/laravel/public/api'
 }
